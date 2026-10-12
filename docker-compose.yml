@@ -1,0 +1,9 @@
+services:
+  dirigera2mqtt:
+    build: .
+    image: dirigera2mqtt:latest
+    container_name: dirigera2mqtt
+    restart: unless-stopped
+    env_file: .env
+    volumes:
+      - ./data:/data

@@ -22,10 +22,12 @@ Bridges an IKEA DIRIGERA hub to MQTT with Home Assistant discovery. It uses the 
 ```sh
 cp .env.example .env               # set DIRIGERA_HOST, MQTT_HOST and your MQTT credentials
 mkdir -p data                      # the container runs as uid 1000 and writes the token here
-docker compose build
+docker compose pull
 docker compose run --rm dirigera2mqtt pair    # press the button on the bottom of the hub
 docker compose up -d
 ```
+
+The image is `ghcr.io/jamesbiederbeck/dirigera2mqtt`, built for amd64 and arm64 by GitHub Actions. `latest` tracks `main`, and `v*` tags publish matching version tags. To build from source instead, uncomment `build: .` in `docker-compose.yml` and run `docker compose build`.
 
 `pair` writes the hub token to `./data/token`, readable by the owner only. If you already have a token, either put it in that file or set `DIRIGERA_TOKEN`. If the hub ever rejects the token, the bridge stops with exit code 2 and a message telling you to pair again, rather than retrying forever.
 

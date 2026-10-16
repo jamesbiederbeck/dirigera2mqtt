@@ -1,7 +1,8 @@
 services:
   dirigera2mqtt:
-    build: .
-    image: dirigera2mqtt:latest
+    image: ghcr.io/jamesbiederbeck/dirigera2mqtt:latest
+    # To build from this checkout instead of pulling, uncomment:
+    # build: .
     container_name: dirigera2mqtt
     restart: unless-stopped
     env_file: .env
